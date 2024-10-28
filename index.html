@@ -135,8 +135,26 @@
         import { redirectToSpotifyAuth, getAccessTokenFromUrl, redirectUri } from './spotify_OAuth.js';
 
         
-        const button = document.querySelector('.button');
+        
+        let access_token;
 
+        async function initialize() {
+            access_token = getAccessTokenFromUrl();
+            
+            if (!access_token) {
+                await redirectToSpotifyAuth();
+            } else {
+                // Remove the token from the URL and update the page state
+                window.history.replaceState({}, document.title, redirectUri);
+            }
+        }
+
+        // Call initialize only once
+        await initialize().catch(console.error);
+
+        let saved_songs_len  = await getTotalSavedSongs(access_token);
+
+        
         window.animateButton = function animateButton() {
             const logo = document.querySelector('.spotify-logo');
             const sweeper = document.querySelector('.sweeper');
@@ -145,25 +163,7 @@
             sweeper.classList.add('animate-sweeper');   
         };
 
-
-        let saved_songs_len = 0;
-        const access_token = getAccessTokenFromUrl();
-
-        async function initialize() {
-            
-            if (access_token) {
-
-                saved_songs_len = await getTotalSavedSongs(access_token);
-                console.log("saved_songs_len: " + saved_songs_len);
-                window.history.replaceState({}, document.title, redirectUri);
-            } else {
-                redirectToSpotifyAuth();
-            }
-        }
-
-        await initialize();
         
-
         function updateProgress(current, total) {
             progressDisplay.textContent = `${current}/${total}`;
         }

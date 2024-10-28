@@ -22,6 +22,7 @@ async function fetchLikedSongs(url, access_token) {
     const limit = 50;
     
     while (true) {
+        
         const response = await fetch(`${url}?limit=${limit}&offset=${offset}`, {
             headers: { 'Authorization': `Bearer ${access_token}` }
         });
@@ -43,7 +44,7 @@ async function fetchLikedSongs(url, access_token) {
                     album: albumName,
                     uri: track.uri
                 });
-                console.log(data.items.length);
+                
             }
         });
         offset += limit;
@@ -90,11 +91,11 @@ async function addSongsToPlaylist(playlistId, access_token) {
 }
 
 export async function getTotalSavedSongs(access_token) {
-    debugger
     const response = await fetch(apiUrl, {
         headers: { 'Authorization': `Bearer ${access_token}` }
     });
     const data = await response.json();
+    
     return data.total;
 }
 
