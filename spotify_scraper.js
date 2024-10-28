@@ -90,6 +90,7 @@ async function addSongsToPlaylist(playlistId, access_token) {
 }
 
 export async function getTotalSavedSongs(access_token) {
+    debugger
     const response = await fetch(apiUrl, {
         headers: { 'Authorization': `Bearer ${access_token}` }
     });
