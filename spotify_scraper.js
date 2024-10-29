@@ -20,7 +20,7 @@ function containsCyrillic(text) {
 export let offset = 0;
 async function fetchLikedSongs(url, access_token) {
     const limit = 50;
-    console.log(access_token);
+    
     while (true) {
         
         const response = await fetch(`${url}?limit=${limit}&offset=${offset}`, {
@@ -91,7 +91,7 @@ async function addSongsToPlaylist(playlistId, access_token) {
 }
 
 export async function getTotalSavedSongs(access_token) {
-    console.log(access_token);
+    
     const response = await fetch(apiUrl, {
         headers: { 'Authorization': `Bearer ${access_token}` }
     });
@@ -103,11 +103,13 @@ export let saved_songs_len;
 export async function createPlaylist() {
     
     let access_token = getAccessTokenFromUrl();
-    
-    saved_songs_len = await getTotalSavedSongs(access_token);
 
+    window.history.replaceState({}, document.title, redirectUri);
+    
     if (access_token) {
-        
+
+        saved_songs_len = await getTotalSavedSongs(access_token);
+
         window.history.replaceState({}, document.title, redirectUri);
         await fetchLikedSongs(apiUrl, access_token);
 
@@ -128,7 +130,6 @@ export async function createPlaylist() {
             console.log("No Russian songs found in your liked songs.");
         }
 
-        
     } else {
         redirectToSpotifyAuth();
     }
