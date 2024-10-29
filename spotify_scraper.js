@@ -110,7 +110,7 @@ export async function createPlaylist() {
 
         saved_songs_len = await getTotalSavedSongs(access_token);
 
-        window.history.replaceState({}, document.title, redirectUri);
+        
         await fetchLikedSongs(apiUrl, access_token);
 
         if (russianSongs.length > 0) {
