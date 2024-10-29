@@ -1,5 +1,5 @@
 const clientId = 'a93446e4b03243dc9277d86767c38e72';
-export const redirectUri = 'http://azizhankaya.github.io/spotify-russian-playlist/';
+export const redirectUri = 'https://azizhankaya.github.io/spotify-russian-playlist/';
 const scopes = 'playlist-read-private user-library-read playlist-modify-private';
 
 const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${clientId}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
