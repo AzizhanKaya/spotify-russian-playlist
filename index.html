@@ -131,34 +131,15 @@
 
     <script type="module">
 
-        import {getTotalSavedSongs, createPlaylist, offset} from './spotify_scraper.js'
+        import {getTotalSavedSongs, createPlaylist, offset, saved_songs_len} from './spotify_scraper.js'
         import { redirectToSpotifyAuth, getAccessTokenFromUrl, redirectUri } from './spotify_OAuth.js';
 
         
         
-        let access_token;
-
-        async function initialize() {
-            access_token = getAccessTokenFromUrl();
-            
-            if (!access_token) {
-                await redirectToSpotifyAuth();
-            } else {
-                // Remove the token from the URL and update the page state
-                window.history.replaceState({}, document.title, redirectUri);
-            }
-        }
-
-        // Call initialize only once
-        await initialize().catch(console.error);
-
-        let saved_songs_len  = await getTotalSavedSongs(access_token);
-
-        
         window.animateButton = function animateButton() {
             const logo = document.querySelector('.spotify-logo');
             const sweeper = document.querySelector('.sweeper');
-            createPlaylist(access_token);
+            createPlaylist();
             logo.classList.add('animate-logo');
             sweeper.classList.add('animate-sweeper');   
         };
@@ -187,7 +168,7 @@
             button.style.transition = "width 0.5s ease";
             
             logo.style.animation = "logo-rotate 1s forwards";
-            }
+        }
         
     </script>
     
