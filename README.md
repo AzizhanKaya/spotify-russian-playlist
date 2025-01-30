@@ -3,6 +3,7 @@
 This project creates a playlist of liked Russian songs on your spotify using the Spotify API with vanilla.js.
 
 You can [check it out](https://azizhankaya.github.io/spotify-russian-playlist/)
+> Unfortunately, it is not accessible to everyone because Spotify verification is still pending.
 
 ## Demo
 
