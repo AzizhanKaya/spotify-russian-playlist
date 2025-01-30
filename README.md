@@ -6,10 +6,7 @@ You can [check it out](https://azizhankaya.github.io/spotify-russian-playlist/)
 
 ## Demo
 
-<video width="640" height="360" controls>
-  <source src="https://azizhankaya.github.io/spotify-russian-playlist/demo.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+[demo.webm](https://github.com/user-attachments/assets/5b995cd1-a7ea-4b59-8ce1-4cd018615340)
 
 ## Features
 
